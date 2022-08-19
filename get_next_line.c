@@ -6,7 +6,7 @@
 /*   By: sopopa <sopopa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 19:08:58 by sopopa            #+#    #+#             */
-/*   Updated: 2022/08/19 17:16:04 by sopopa           ###   ########.fr       */
+/*   Updated: 2022/08/19 22:33:53 by sopopa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ char	*read_and_save(int fd, char *res)
 	int		num_bytes;
 
 	if (!res)
-		res = ft_calloc(1, sizeof(char));
+		res = calloc(1,1);
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	num_bytes = 1;
-	while (num_bytes > 0)
+	while (num_bytes != 0)
 	{
 		num_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (num_bytes == -1)
@@ -42,8 +42,10 @@ char	*get_first_line(char *save)
 	char	*line;
 
 	i = 0;
+	if (!save)
+		return (NULL);
 	line = calloc(ft_strlen(save) + 1, sizeof(char));
-	while (save[i] != '\n' && save[i] != 0)
+	while (save[i] && save[i] != '\n' && save[i] != 0)
 	{
 		line[i] = save[i];
 		i++;
@@ -87,12 +89,27 @@ char	*get_next_line(int fd)
 	static char	*save;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 	save = read_and_save(fd, save);
-	if (!save || !save[0])
-		return (NULL);
+	// if (!save || !save[0])
+	// 	return (NULL);
 	line = get_first_line(save);
 	save = get_the_next(save, line);
 	return (line);
 }
+
+// int main (void)
+// {
+// 	int     fd;
+// 	char    *z;
+// 	fd = open("file.txt", O_RDWR);
+// 	z = get_next_line(fd);
+// 	printf("%s\n%zu\n\n", z, ft_strlen(z));
+// 	// while (z)
+// 	// {
+// 	// 	z = get_next_line(fd);
+// 	// 	printf("%s\n%zu\n\n", z, ft_strlen(z));
+// 	// }
+	
+// }
