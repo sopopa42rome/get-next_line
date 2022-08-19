@@ -6,7 +6,7 @@
 /*   By: sopopa <sopopa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 19:08:58 by sopopa            #+#    #+#             */
-/*   Updated: 2022/08/18 18:45:24 by sopopa           ###   ########.fr       */
+/*   Updated: 2022/08/19 17:16:23 by sopopa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)
 		return (NULL);
 	save[fd] = read_and_save(fd, save[fd]);
-	if (!save[fd])
+	if (!save[fd] || !save[fd][0])
 		return (NULL);
 	line = get_first_line(save[fd]);
 	save[fd] = get_the_next(save[fd], line);
