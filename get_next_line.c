@@ -6,7 +6,11 @@
 /*   By: sopopa <sopopa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 19:08:58 by sopopa            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/08/20 22:04:32 by sopopa           ###   ########.fr       */
+=======
+/*   Updated: 2022/08/20 21:59:23 by sopopa           ###   ########.fr       */
+>>>>>>> 25bdc8baa0b1f671dc8622b93498f604e9a655df
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +105,19 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int main (void)
-// {
-// 	int     fd;
-// 	char    *z;
-// 	fd = open("file.txt", O_RDWR);
+int main (void)
+{
+	int     fd;
+	char    *z;
+	fd = open("file.txt", O_RDWR);
 	
+<<<<<<< HEAD
 // 	// z = get_next_line(fd);
 // 	printf("String = %s\n", get_next_line(fd));
 	
+=======
+	z = get_next_line(fd);
+	printf("String = %s\n Lenght = %zu\n\n", z, ft_strlen(z));
+>>>>>>> 25bdc8baa0b1f671dc8622b93498f604e9a655df
 		
-// }
+}
