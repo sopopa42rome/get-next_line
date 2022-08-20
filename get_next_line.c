@@ -6,7 +6,7 @@
 /*   By: sopopa <sopopa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 19:08:58 by sopopa            #+#    #+#             */
-/*   Updated: 2022/08/20 17:57:14 by sopopa           ###   ########.fr       */
+/*   Updated: 2022/08/20 21:53:28 by sopopa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,14 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-// int main (void)
-// {
-// 	int     fd;
-// 	char    *z;
-// 	fd = open("file.txt", O_RDWR);
+
+int main (void)
+{
+	int     fd;
+	char    *z;
+	fd = open("file.txt", O_RDWR);
 	
-// 	z = get_next_line(fd);
-// 	printf("String = %s\n Lenght = %zu\n\n", z, ft_strlen(z));
+	z = get_next_line(fd);
+	printf("String = %s\n Lenght = %zu\n\n", z, ft_strlen(z));
 		
-// }
+}
