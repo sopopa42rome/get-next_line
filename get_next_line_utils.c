@@ -6,7 +6,7 @@
 /*   By: sopopa <sopopa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 19:09:01 by sopopa            #+#    #+#             */
-/*   Updated: 2022/08/20 18:32:05 by sopopa           ###   ########.fr       */
+/*   Updated: 2022/08/21 22:06:24 by sopopa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	i = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	ptr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	ptr = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(ptr));
 	if (!ptr)
 		return (NULL);
 	while (s1[i] != '\0')
