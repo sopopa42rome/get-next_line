@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000
+#  define BUFFER_SIZE 2
 # endif
 
 char	*ft_strchr(const char *str, int c);
