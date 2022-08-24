@@ -42,7 +42,7 @@ char	*read_and_save(int fd, char *res)
 	
 	if (!res)
 		res = ft_calloc(1, 1);
-	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(buffer));
+	buffer = malloc(BUFFER_SIZE + 1* sizeof(buffer));
 	num_bytes = 1;
 	while (!ft_strchr(res, '\n') && num_bytes != 0)
 	{
