@@ -6,35 +6,12 @@
 /*   By: sopopa <sopopa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 19:08:58 by sopopa            #+#    #+#             */
-/*   Updated: 2022/08/19 17:16:23 by sopopa           ###   ########.fr       */
+/*   Updated: 2022/08/24 23:08:46 by sopopa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-char		*ft_strdup(char *str)
-{
-	int		i;
-	char	*final;
-
-	if (!str || !str[0])
-	{	
-		free(str);
-		return (NULL);
-	}
-	i = 0;
-	final = (char*)malloc(sizeof(char) * ft_strlen(str) + 1);
-	if (!final)
-		return (0);
-	while (str[i])
-	{
-		final[i] = str[i];
-		i++;
-	}
-	final[i] = '\0';
-	free(str);
-	return (final);
-}
 char	*read_and_save(int fd, char *res)
 {
 	char	*buffer;
@@ -47,13 +24,15 @@ char	*read_and_save(int fd, char *res)
 	while (!ft_strchr(res, '\n') && num_bytes != 0)
 	{
 		num_bytes = read(fd, buffer, BUFFER_SIZE);
-		if (num_bytes == -1)
+	if (num_bytes == -1 || (num_bytes == 0 && res[0] == 0))
 		{
 			free(buffer);
+			free(res);
 			return (NULL);
 		}
 		buffer[num_bytes] = 0;
 		res = ft_strjoin(res, buffer);
+
 	}
 	free(buffer);
 	return (res);
@@ -64,6 +43,9 @@ char	*get_first_line(char *save)
 	int		i;
 	char	*line;
 
+	if (!save)
+
+		return (NULL);
 	i = 0;
 	while(save[i] && save[i] != '\n')
 		i++;
@@ -110,15 +92,13 @@ char	*get_next_line(int fd)
 {
 	static char	*save[257];
 	char		*line;
-	char		*final;
 	
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)	
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 256)	
 		return (NULL);
-	save = read_and_save(fd, save[fd]);
-	if (!save)
+	save[fd] = read_and_save(fd, save[fd]);
+	if (!save[fd])
 		return (NULL);
 	line = get_first_line(save[fd]);
-	save = get_the_next(save[fd], line);
-	final = ft_strdup(line);
-	return (final);
+	save[fd] = get_the_next(save[fd], line);
+	return (line);
 }
